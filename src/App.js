@@ -5,12 +5,14 @@ import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
 import LoginScreen from './Pages/LoginScreen';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from './config/firabase';
-import { logout,login, selectUser } from './features/userSlice';
 import {useDispatch, useSelector} from 'react-redux'
 import ProfileScreen from './Pages/ProfileScreen';
+import { login, logout } from './actions/user';
+import {Provider} from 'react-redux'
+import store from './store/index'
 
 function App() {
-  const user = useSelector(selectUser)
+  const {user} = useSelector(state=>state)
   console.log(user)
    const dispatch = useDispatch()
 
@@ -34,7 +36,7 @@ function App() {
 
 
   return (
-    <div className="app">
+   <div className="app">
       <Router>
         {!user ? (<LoginScreen />) :
           (<Routes>

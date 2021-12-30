@@ -39,7 +39,6 @@ const SignUpScreen = () => {
 
     }
 
-
     return (
         <div className='signupScreen'>
             <form>

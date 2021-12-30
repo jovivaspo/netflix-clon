@@ -1,9 +1,11 @@
 import React,{useState,useEffect} from 'react'
 import { useNavigate } from 'react-router-dom'
+import {useSelector} from 'react-redux'
 import './Nav.css'
 
 const Nav = () => {
     const [show, handleShow] = useState(false)
+    const {subscription} = useSelector(state=>state)
     let navigate = useNavigate()
 
     const transitionNavBar=()=>{
@@ -22,7 +24,9 @@ const Nav = () => {
     return (
         <div className={`nav ${show && 'nav__black'}`} >
             <div className='nav__contents'>
-                <img className='nav__logo' onClick={()=>navigate('/')} src='http://assets.stickpng.com/images/580b57fcd9996e24bc43c529.png'
+                <img className='nav__logo' onClick={()=>{
+                    subscription?  navigate('/') : alert('You must subcribe to a plan')}} 
+                    src='http://assets.stickpng.com/images/580b57fcd9996e24bc43c529.png'
                     alt='logo Netflix'
                      />
                 <img className='nav__avatar' onClick={()=>navigate('/profile')} src='https://ih0.redbubble.net/image.618427277.3222/flat,1000x1000,075,f.u2.jpg'

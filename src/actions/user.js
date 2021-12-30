@@ -1,5 +1,4 @@
-import { LOGIN, SIGNIN, SIGNOUT } from "../types";
+import { LOGIN, LOGOUT} from "../types";
 
-export const login = () => ({type:LOGIN})
-export const signin = () => ({type:SIGNIN})
-export const signout = () => ({type: SIGNOUT})
+export const login = (user) => ({type:LOGIN,payload:user})
+export const logout = () => ({type: LOGOUT})

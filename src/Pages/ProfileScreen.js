@@ -2,13 +2,12 @@ import React from 'react'
 import './ProfileScreen.css'
 import Nav from '../Components/Nav'
 import { useSelector } from 'react-redux'
-import { selectUser } from '../features/userSlice'
 import { auth } from '../config/firabase'
 import PlanScreen from './PlanScreen'
 
 
 const ProfileScreen = () => {
-    const user = useSelector(selectUser)
+    const {user} = useSelector(state=>state)
    
     return (
         <div className='profileScreen'>

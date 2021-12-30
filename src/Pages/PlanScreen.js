@@ -2,15 +2,16 @@ import React, { useState, useEffect } from 'react'
 import db from '../config/firabase'
 import './PlanScreen.css'
 import { collection, doc, getDoc, getDocs, onSnapshot, query, setDoc, where } from 'firebase/firestore'
-import { selectUser } from '../features/userSlice'
-import { useSelector } from 'react-redux'
+import { subscribe } from '../actions/subs'
+import { useSelector,useDispatch } from 'react-redux'
 import { loadStripe } from '@stripe/stripe-js'
 
 
 const PlanScreen = () => {
     const [products, setProducts] = useState([])
-    const [subscription,setSubcription] = useState()
-    const user = useSelector(selectUser)
+    const {user, subscription} = useSelector(state=>state)
+   
+     const dispatch = useDispatch()
 
     useEffect(()=>{
         const checkSub = () =>{
@@ -18,11 +19,11 @@ const PlanScreen = () => {
             getDocs(refSub)
             .then(sub=>{
                     console.log(sub.docs[0].data())
-                    setSubcription({
+                    dispatch(subscribe({
                         sub: sub.docs[0].data().role,
                         start: sub.docs[0].data().current_period_start.seconds,
                         end: sub.docs[0].data().current_period_end.seconds
-                    })
+                    }))
             })
         }
 
@@ -61,7 +62,7 @@ const PlanScreen = () => {
 
    
 
-    console.log(products,subscription)
+  
 
     const loadCheckout = async (priceId) => {
      
@@ -93,6 +94,8 @@ const PlanScreen = () => {
 
 
     }
+
+    console.log(products,subscription)
 
     return (
         <div className='planScreen'>
