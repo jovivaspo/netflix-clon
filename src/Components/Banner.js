@@ -1,7 +1,7 @@
 import React,{useState,useEffect} from 'react'
 import './Banner.css'
 import { getData } from '../services/getData'
-import API from '../config/api'
+import API from '../config/apiFilms'
 
 const Banner = () => {
 
