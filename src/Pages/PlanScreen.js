@@ -30,7 +30,7 @@ const PlanScreen = () => {
         checkSub()
        
         
-    },[])
+    },[user])
 
 
     useEffect(() => {
